@@ -1,0 +1,17 @@
+I want to provide simple guidelines for adding LLM capabalities to products and capture these guidelines in the Guidelines.md file. Provide an example scenario and python code snippet assuming a cloud service that is used to store and query logs and metrics with an existing Agent, lets call it 'Observability Copilot'. Create an example in the examples/mcp folder and use fastmcp https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/fastmcp/echo.py The example should have a readme that shows how to start the server.
+
+The rough process is : Collect potential user questions, use that to design functions that are then wrapped in an MCP Server followed by either integrating the MCP server with an existing agent or creating an agent.
+
+Start with collecting a list of questions or tasks a user using this product might expect an AI Agent to solve or answer. Example "Show me the most recent errors" This will will imply there are APIs that enumerate the list of log sources this user has access to then scan the logs for most recent error in each source.
+
+
+For each of the questions, come up with functions that will be required to ansewer these quetions. Give meaningull names to these functions - these need not be real functions available in your code at the moment. Important thing is to capture their 'functionality'.
+
+Next step is to collect all such functions and consider simplifying them so that an agents can execute these functions in response to an instruction from an LLM.
+
+Have a good description of what each function does as well as its paramters. These will be shared to LLMs which will, based on the description of the function and the problem at hand ask agents to execute these functions.
+
+Implement these functions as an MCP Server and registre the Server with any agent that supports MCP - example use VS Code's GitHub Copilot Agent. Now test the agent with all the questions collected in the initial step.
+
+If there are no existing agents, create one. This will be covered in a different section.
+
